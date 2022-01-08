@@ -1,0 +1,23 @@
+// 1. this (the execution context) is determined dynamically at runtime. Without seeing where/when/how this function is invoked, there's no way to determine the value of this.
+
+// 2. Here, this points to the global object. (window in a browser, global in many other environments.) In strict mode, this will be set to point to undefined.
+
+// 3. this is going to point to the implicit context, which will be either window (in a browser) or the global object (in most other environments).
+
+// 4. In this code, a method is being called, so this points to the containing/surrounding object (the object which global variable obj points to in this case).
+
+// 5. In strict mode this code will log undefined. this points to the global object when not running in strict mode; however, when strict mode is in effect, this points to undefinned, and thus any properties defined this way in strict mode will point to undefined.
+
+// NOTE: The above is mistaken. An error will be raised because this code is trying to access a property on the gloal object which doesn't exist.
+
+// 6. This code logs 2. Since the function which bar points to is being invoked from within an object (as an object property), it's a method, and so its context is its surrounding object.
+
+// This is a good example that execution context in JS is determined how things are invoked/executed rather than where they're defined.
+
+// 7. This code will log the object which foo points to first and then undefined. 
+
+// The first invocation takes places on line 12: here, the function which bar points to is being invoked from within an object (my friend). When calling a method, the context is the containing object.
+
+// On line 14, the function is called from the global scope, and in this case it will output either window or undefined (the latter if in strict mode).
+
+// NOTE: The last sentence is incorrect. Since the window/global object doesn't have a baz() defined on it, an error will be raised and execution will cease.

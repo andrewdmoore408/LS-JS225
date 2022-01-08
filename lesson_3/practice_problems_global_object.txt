@@ -1,0 +1,11 @@
+// 1 In 'sloppy' mode, the global object (window in browsers) serves as the implicit execution context. When strict mode is enabled, the implicit execution context is set to undefined. (The global object still exists in strict mode—it just isn't used as the implicit execution context).
+
+// 2 This code logs true. Since it's not running in strict mode, creating an undeclared variable adds it as a property on the global object, which is window on a browser. Thus, global variable and window.a both point to 10.
+
+// 3 This code raises an error. In strict mode, undeclared variables are not allowed and raise a ReferenceError. (Even if the variable could be initialized like this, the implicit execution context is set to undefined in strict mode, so the global object wouldn't have a property added to it).
+
+// 4 This code raises a ReferenceError. The variable named b is local to the scope of function func() and is no longer in scope on line 7 at the invocation of console.log.
+
+// 5 This code will log 1. Although it's initialized inside a function, variable b is not declared and thus becomes a property on the global object (since this code isn't running in strict mode). As a property on the global object, b is accessible anywhere in the code after it's initialized.
+
+// 6 This code will raise a ReferenceError. In strict mode, undeclared variables are not allowed.

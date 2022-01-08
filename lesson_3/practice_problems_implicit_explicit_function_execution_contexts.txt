@@ -1,0 +1,29 @@
+// 1. The output is window. Implicit execution context is determined when a function is invoked, and the function is invoked in the global scope here. Since this code isn't running in strict mode, the implicit execution context is the global object, which is window in browsers.
+
+// 2. In strict mode, the code will log undefined. The global context is set to undefined when JS runs in strict mode.
+
+// 3. This code logs the object which obj points to. Because the global variable context is being assigned to the return value of invoking the method foo() from inside the object (obj.foo()), the context in which the foo() method is running is inside the object which obj points to; thus, this points to the object that obj points to.
+
+// If another global variable were initialized to the foo method itself (rather than the return value of its invocation), the foo method could then be invoked from the global scope, in which case its execution context would be the global object (sloppy mode) or undefined (strict mode).
+
+// 4. This code will log 'Hello from the global scope!' and then 'Hello from the function scope!'.
+
+// Because the function deliverMessage outputs this.message, its output will depend on the function execution context that's bound to it during invocation. On line 7, no explicit context is given to it, and so this points to the global object, on which a message property has been defined to point to '...global scope!'. On line 15, when deliverMessage is again invoked, it's as a method defined on the object to which global variable bar points, inside of which message is a property pointing to '...function scope!'.
+
+// 5. 20 and then 0. (If let is used on line 1 to declare a, then the first log changes to NaN).
+
+The difference here is again illustrating a function invocation versus a method invocation--method invocations implicitly use their calling object as their execution context.
+
+NOTE: variables declared using let and const do not become properties on the global object. This is an important difference compared to variables declared using var. 
+
+// 6. call() and apply() are Function methods which allow us to explicitly set execution contexts. They both take an argument which specifies the context object. For any remaining arguments to be passed into the function ultimately being invoked, call takes separate arguments and apply takes an array containing arguments.
+
+// 7. bar.add.call(foo); // This returns 3 since foo.a's value is 1 and foo.b's value is 2.
+
+// 8. outputList.apply(fruitsObj, fruitsObj.list);
+
+// Since outputList is converting its arguments to an array anyway and there's an array ready to use as a property of the object which fruitsObj points to, I figured I may as well use the apply() method, which accepts an array which will be passed into the function being invoked as an argument.
+
+// We could also use call() instead and use spread syntax.
+
+// 9. 

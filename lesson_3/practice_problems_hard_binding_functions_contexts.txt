@@ -1,0 +1,17 @@
+// 1. We can use the bind method (defined on the Function object) to permanently and explicitly bind execution context for a function. It returns a new function which is the original function bound to the execution context passed into the bind method as an argument.
+
+// 2. This code will not log anything to the console--the Function.bind() method doesn't invoke a function; it returns a new function permanently bound to an execution context.
+
+// If the result of foo.bind(obj) were assigned to a variable and then invoked, it would log 'JavaScript'.
+
+// 3. This code will log 5. 
+
+// Global variable bar is initialized to the return value of bind()--that is, it's initialized to a function which is the function foo() permanently bound to the object global variable obj points to as its execution context. This means that when this new function is invoked, this will refer to the object obj points to, so this.a will point to 2 and this.b will point to 3.
+
+// 4. This code logs 'JavaScript makes sense!'
+
+// Invoking the bind() method permanently binds the execution context passed into bind() to the function on which bind() was invoked. In this example, even though the function foo() is indirectly being assigned as a property of the object global variable negativeMentality points to, its execution context is permanently bound to the object which positiveMentality points to, so this points to 'JavaScript makes sense!'
+
+// 5. This code logs 'Amazebulous!'.
+
+// When bind() is invoked, it returns a new function whose execution context is permanently bound to the argument bind() was passed. Even invoking Function.call() or Function.apply() will not change the context of the returned function.
