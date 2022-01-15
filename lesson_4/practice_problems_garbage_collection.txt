@@ -1,0 +1,13 @@
+1. Yes, JavaScript features garbage collection. Languages with garbage collection keep track of memory deallocation so that developers don't have to manually free memory.
+
+JavaScript's garbage collection tracks references to points in memory, and once no references to a given place in memory exist any longer (meaning no variables, objects, or closures reference that point in memory), it's eligible for garbage collection and will be freed automatically by JS the next time it collects the garbage.
+
+2. On line 5, neither 1 nor the string 'A string' are eligible for GC.
+
+On line 10, after the call to the function global variable foo points to, 'A string' will be available for GC since it's no longer in scope (and isn't part of a closure).
+
+3. No, the value global variable outerFoo points to cannot be garbage collected. As a global variable, outerFoo is still in scope, and so the value it points to cannot be garbage collected unless global variable outerFoo is reassigned later or program execution ends.
+
+4. No, 'abc' isn't eligible for GC on line 10. The function which global variable makeString points to returns an anonymous function which has access to 'abc' as part of its closure. As long as global variable str points to that anonymous function, 'abc' will  still be accessible from the closure that the anonymous function has.
+
+5. If the global variable bash is ever reassigned, 'Some val' will then be eligible for GC. Otherwise, it can't be collected until program execution ends.

@@ -1,0 +1,7 @@
+1. JavaScript can garbage collect the [1] array after line 4 runs, since global variable a has been reassigned to a different array and there are no other references to the [1] array.
+
+[2] is only assigned to local variable c inside the definition for the run function, so after run is called on line 12, there are no references left to [2] and it can be garbage collected.
+
+The array [1, 2] can not be garbage collected until this code finishes execution since global variable a references it. If global variable a were reassigned to something else (and no other references to this [1, 2] had been made), it would be eligible for GC, but according to the current code it still has a reference to it and is not eligible for GC until the end of the program.
+
+2. JavaScript can only GC the string 'Steve' once the program stops running or the global variable helloSteve is reassigned to something else. Currently, the function which global variable helloSteve points to has access to 'Steve' as part of its closure, so there is still a reference to it.
