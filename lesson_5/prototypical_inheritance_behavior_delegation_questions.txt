@@ -1,0 +1,11 @@
+1. This code will log 1. When a property is accessed on an object that isn't that object's own property, JavaScript will go up the prototype chain looking for that property.
+
+This is true whether the property was already defined on the prototype object at the time of the object's instantiation or added later.
+
+2. This code will log 2. The first place JS looks for an object property is on the object itself (looking for an own property). It only moves up the prototype chain if it doesn't find the property there first.
+
+Since the object which global variable bar points to is at the bottom of the prototype chain and it has an a property defined on it, JS uses that own a property, which is assigned to 2.
+
+3. No, from this code alone we don't know whether the property named myProp is defined on the object which global variable far points to, the object global variable boo points to, or another object further up boo's prototype chain.
+
+To test that the object far points to isn't delegating to the object boo points to, we could invoke the Object.prototype.hasOwnProperty method, which is a predicate that will return whether or not the propertyName passed as an argument exists as an own property of the calling object.
